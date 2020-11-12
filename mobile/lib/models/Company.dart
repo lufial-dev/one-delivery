@@ -1,4 +1,5 @@
 import 'package:mobile/models/CompanyCategory.dart';
+import 'package:mobile/models/OpenHour.dart';
 
 class Company{
   int id;

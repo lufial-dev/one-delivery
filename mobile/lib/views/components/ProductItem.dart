@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/models/Product.dart';
 import 'package:mobile/views/utils/MyColors.dart';
+import 'package:intl/intl.dart';
 
 class ProductItem extends StatelessWidget {
   final Product product;
@@ -11,6 +12,8 @@ class ProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = 120;
+    final NumberFormat valueFormat = NumberFormat("##.00", "pt-BR");
+
     TextStyle styleValue = TextStyle(color: MyColors.PRIMARY, fontWeight: FontWeight.bold);
     TextStyle styleProduct = TextStyle(color: Colors.grey);
     TextStyle styleCompany = TextStyle(fontWeight: FontWeight.bold);
@@ -43,7 +46,7 @@ class ProductItem extends StatelessWidget {
                     Container(
                       margin: EdgeInsets.only(top: 10),
                       width: width,
-                      child: Text("R\$${product.value}",
+                      child: Text("R\$${valueFormat.format(product.value)}",
                         style: styleValue,
                         textAlign: TextAlign.end,
                       )
