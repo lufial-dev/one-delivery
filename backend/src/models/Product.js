@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require('../config/database');
 const ProductImage = require('./ProductImage');
 const ProductCategory = require('./ProductCategory');
 const Ingredient = require('./Ingredient'); 

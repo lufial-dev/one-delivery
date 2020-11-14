@@ -14,6 +14,28 @@ class CompanyCategoryController{
             });
     }
 
+    async update(req, res){
+        await CompanyCategory.findByIdAndUpdate({'_id': req.params.id}, req.body, { new : true })
+            .then(response => {
+                return res.status(200).json(response);
+            })
+            .catch(error => {
+                return res.status(500).json(error);
+            })
+        
+    }
+
+    async all(req, res){
+        await CompanyCategory.find()
+            .sort('name')
+            .then(response => {
+                return res.status(200).json(response);
+            })
+            .catch(error => {
+                return res.status(500).json(error);
+            });
+    }
+
 }
 
-model.exports = new CompanyCategoryController();
+module.exports = new CompanyCategoryController();
