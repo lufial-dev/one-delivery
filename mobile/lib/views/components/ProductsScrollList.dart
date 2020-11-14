@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:mobile/models/Company.dart';
 import 'package:mobile/models/Product.dart';
-import 'package:mobile/views/components/CompanyItem.dart';
 import 'package:mobile/views/components/ProductItem.dart';
 
 class ProductsScrollList extends StatelessWidget {
