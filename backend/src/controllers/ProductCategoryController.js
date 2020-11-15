@@ -1,25 +1,25 @@
-const CompanyCategory = require('../models/CompanyCategory');
+const ProductCategory = require('../models/ProductCategory');
 const path = require("path");
 const URL = require('../config/utilconfig');
 
-class CompanyCategoryController{
+class ProductCategoryController{
 
     async create(req, res){
         const { name } = req.body;
         const file = req.file;
 
-        const icon = file.filename;
+        const image = file.filename;
 
         const data = {
             name,
-            icon
+            image
         }
         
         
 
-        const companyCategory = new CompanyCategory(data);
+        const productCategory = new ProductCategory(data);
         
-        await companyCategory.save()
+        await productCategory.save()
             .then( response => {
                 return res.status(200).json(response);
             })
@@ -32,13 +32,13 @@ class CompanyCategoryController{
         const {name} = req.body;
         const file = req.file;
 
-        const icon = file.filename;
+        const image = file.filename;
 
         const data = {
             name,
-            icon
+            image
         }
-        await CompanyCategory.findByIdAndUpdate({'_id': req.params.id}, data, { new : true })
+        await ProductCategory.findByIdAndUpdate({'_id': req.params.id}, data, { new : true })
             .then(response => {
                 return res.status(200).json(response);
             })
@@ -48,11 +48,11 @@ class CompanyCategoryController{
         
     }
 
-    async all(req, res){
-        await CompanyCategory.find()
+    async find(req, res){
+        await ProductCategory.find()
             .sort('name')
             .then(response => {
-                response.map(r => r.icon = URL.COMPANY_CATEGORY +  r.icon);
+                response.map(r => r.icon = URL.PRODUCT_CATEGORY +  r.image);
                 return res.status(200).json(response);
             })
             .catch(error => {
@@ -62,4 +62,4 @@ class CompanyCategoryController{
 
 }
 
-module.exports = new CompanyCategoryController();
+module.exports = new ProductCategoryController();
