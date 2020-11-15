@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const Client = new Schema({
     name : { type : String , required : true},
     phone  : { type : String, required : true},
-    token : { type : String, required : true, unique : unique},
+    token : { type : String, required : true, unique : true},
     birth : { type : Date, required : false}
 });
 
