@@ -1,5 +1,3 @@
-const Official = require("../models/Official");
-
 const OfficialValidation = async (req, res, next) => {
     const { name, token, office } = req.body;
 
