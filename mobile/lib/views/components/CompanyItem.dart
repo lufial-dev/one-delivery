@@ -48,14 +48,14 @@ class CompanyItem extends StatelessWidget {
   Widget build(BuildContext context) {
 
     double height = 60;
-    double widthAvatar = 70;
-    double widthStatus = 80;
+    double widthAvatar = 65;
+    double widthStatus = 70;
 
     TextStyle styleTitle = TextStyle(fontWeight: FontWeight.bold, fontSize: 16);
     TextStyle styleValueDelivery = TextStyle(color: MyColors.SECONDARY);
     TextStyle styleScore = TextStyle(color: MyColors.PRIMARY, fontWeight: FontWeight.bold);
-    TextStyle styleIsOpen = TextStyle(fontWeight: FontWeight.bold, fontSize: 16,color: MyColors.SECONDARY);
-    TextStyle styleIsNotOpen = TextStyle(fontWeight: FontWeight.bold, fontSize: 16,color: Colors.grey);
+    TextStyle styleIsOpen = TextStyle(fontWeight: FontWeight.bold, fontSize: 15,color: MyColors.SECONDARY);
+    TextStyle styleIsNotOpen = TextStyle(fontWeight: FontWeight.bold, fontSize: 15,color: Colors.grey);
     
     double margin = 5;
 

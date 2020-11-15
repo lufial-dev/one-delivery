@@ -1,5 +1,5 @@
 class ProductCategory{
-  int id;
+  String id;
   String name;
   String image;
 

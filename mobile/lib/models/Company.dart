@@ -1,7 +1,7 @@
 import 'package:mobile/models/CompanyCategory.dart';
 
 class Company{
-  int id;
+  String id;
   String name;
   String image;
   String coverImage;

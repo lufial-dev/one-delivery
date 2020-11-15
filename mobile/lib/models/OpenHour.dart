@@ -1,7 +1,7 @@
 import 'package:mobile/models/Company.dart';
 
 class OpenHour{
-  int id;
+  String id;
   int dayOfWeek;
   DateTime openMorning;
   DateTime closeMorning;

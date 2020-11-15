@@ -1,32 +1,41 @@
 import 'package:flutter/cupertino.dart';
-import 'package:mobile/models/CompanyCategory.dart';
-import 'package:mobile/views/components/CategoryItem.dart';
+import 'package:flutter/material.dart';
+import 'package:mobile/views/utils/MyColors.dart';
 
 class CompaniesCategoriesList extends StatelessWidget {
-  
-  final CompanyCategory companyCategory = CompanyCategory();
+  final List<Widget> categoryItens;
+
+
+  CompaniesCategoriesList(this.categoryItens);
 
   @override
   Widget build(BuildContext context) {
-    companyCategory.name = "Lanche";
-    companyCategory.icon = "https://media.istockphoto.com/vectors/sandwich-flat-icon-snack-orange-icons-in-trendy-flat-style-bread-and-vector-id1209494865";
-
-    List<Widget> categories = [
-      CategoryItem(name: companyCategory.name, icon: companyCategory.icon),
-      CategoryItem(name: companyCategory.name, icon: companyCategory.icon),
-      CategoryItem(name: companyCategory.name, icon: companyCategory.icon),
-      CategoryItem(name: companyCategory.name, icon: companyCategory.icon),
-      CategoryItem(name: companyCategory.name, icon: companyCategory.icon),
-      CategoryItem(name: companyCategory.name, icon: companyCategory.icon),
-      CategoryItem(name: companyCategory.name, icon: companyCategory.icon),
-    ];
-
-    return Container( 
-      margin: EdgeInsets.all(10),
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(children: categories)
-      )
+    double width = MediaQuery.of(context).size.width;
+    return Stack(
+      children: [
+        Container( 
+          width: width,
+          height: 50,
+          decoration: BoxDecoration(
+            color: MyColors.PRIMARY,
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(20),
+              bottomRight: Radius.circular(20),
+            )
+          ),
+        ),
+        Container(
+          color: Colors.transparent,
+          margin: EdgeInsets.only(top: 5, left: 10, right: 10),
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(children: categoryItens)
+          ),
+        )
+        
+      ],
     );
+    
+    
   }
 }

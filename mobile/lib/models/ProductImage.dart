@@ -1,4 +1,4 @@
 class ImageProduct {
-    int id;
+    String id;
     String dir;
 }

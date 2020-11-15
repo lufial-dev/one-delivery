@@ -2,7 +2,7 @@ import 'package:mobile/models/Company.dart';
 import 'package:mobile/models/Ingredient.dart';
 
 class Product{
-  int id;
+  String id;
   String name;
   String description;
   double value;

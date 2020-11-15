@@ -1,12 +1,15 @@
 const CompanyCategory = require("../models/CompanyCategory");
 
+
+
 const CompanyCategoryValidation = async (req, res, next) => {
-    const { name, icon } = req.body;
+    const { name } = req.body;
+    const icon  = req.file;
 
     if(!name)
         return res.status(400).json({ error : "O campo nome é obrigatório"});
     else if(!icon)
-        return res.status(400).json({ error : "O campo ícone é obrigatório "});
+        return res.status(400).json({ error : "O campo ícone é obrigatório, ou precisa ser .svg "});
     else{
         let exists;
 
@@ -23,7 +26,7 @@ const CompanyCategoryValidation = async (req, res, next) => {
 
         
         if(exists)
-        return res.status(400).json({ error : "Já existe uma categoria com este nome"});
+            return res.status(400).json({ error : "Já existe uma categoria com este nome"});
         else
             next();
     }

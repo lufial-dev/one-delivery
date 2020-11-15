@@ -1,4 +1,6 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:mobile/controllers/OneDeliveryController.dart';
 import 'package:mobile/models/Company.dart';
 import 'package:mobile/models/OpenHour.dart';
 import 'package:mobile/views/components/CompaniesCategoriesList.dart';
@@ -12,6 +14,22 @@ class OneDeliveryPage extends StatefulWidget {
 }
 
 class _OneDeliveryPageState extends State<OneDeliveryPage> {
+  OneDeliveryController oneDeliveryController = OneDeliveryController();
+  List<Widget> categories = [];
+
+  Future<void> _loadData() async {
+      List<Widget> list = await oneDeliveryController.allCategories();
+      setState(() {
+        categories = list;
+      });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+     _loadData();
+  }
+
   @override
   Widget build(BuildContext context) {
     OpenHour openHour = OpenHour();
@@ -42,18 +60,27 @@ class _OneDeliveryPageState extends State<OneDeliveryPage> {
       CompanyItem(company, openHour),
     ];
     
-    return SingleChildScrollView(    
-      child:Column(
-        children: [
-          CompaniesCategoriesList(),
-          TitleList("Produtos"),
-          ProductsScrollList(),
-          TitleList("Lojas"),
-          Container( 
-            margin: EdgeInsets.all(10),
-            child: Column(children: companies)
-          ),
-        ],
+    return RefreshIndicator(
+      onRefresh: _loadData,
+        child: Column(
+          children: [
+            CompaniesCategoriesList(categories),
+            Expanded(
+              child: SingleChildScrollView(   
+                child:Column(
+                  children: [
+                    TitleList("Produtos"),
+                    ProductsScrollList(),
+                    TitleList("Lojas"),
+                    Container( 
+                      margin: EdgeInsets.all(10),
+                      child: Column(children: companies)
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
       ),
     );
   }

@@ -36,6 +36,7 @@ class _HomePageState extends State<HomePage> {
     
     AppBar appBar = AppBar(
       title: titles[_currentIndex],
+      elevation: 0,
       actions: [
         _currentIndex == 0 ? IconButton(
           icon: Icon(Icons.search),

@@ -1,9 +1,24 @@
 const CompanyCategory = require('../models/CompanyCategory');
+const path = require("path");
+const { json } = require('express');
+const URL = require('../config/utilconfig');
 
 class CompanyCategoryController{
 
     async create(req, res){
-        const companyCategory = new CompanyCategory(req.body);
+        const { name } = req.body;
+        const file = req.file;
+
+        const icon = file.filename;
+
+        const data = {
+            name,
+            icon
+        }
+        
+        
+
+        const companyCategory = new CompanyCategory(data);
         
         await companyCategory.save()
             .then( response => {
@@ -15,7 +30,16 @@ class CompanyCategoryController{
     }
 
     async update(req, res){
-        await CompanyCategory.findByIdAndUpdate({'_id': req.params.id}, req.body, { new : true })
+        const {name} = req.body;
+        const file = req.file;
+
+        const icon = file.filename;
+
+        const data = {
+            name,
+            icon
+        }
+        await CompanyCategory.findByIdAndUpdate({'_id': req.params.id}, data, { new : true })
             .then(response => {
                 return res.status(200).json(response);
             })
@@ -29,6 +53,7 @@ class CompanyCategoryController{
         await CompanyCategory.find()
             .sort('name')
             .then(response => {
+                response.map(r => r.icon = URL.COMPANY_CATEGORY +  r.icon);
                 return res.status(200).json(response);
             })
             .catch(error => {
