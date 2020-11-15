@@ -21,6 +21,7 @@ class ProductCategoryController{
         
         await productCategory.save()
             .then( response => {
+                response.dir = URL.PRODUCT_CATEGORY + response.dir;
                 return res.status(200).json(response);
             })
             .catch( error => {
@@ -40,6 +41,7 @@ class ProductCategoryController{
         }
         await ProductCategory.findByIdAndUpdate({'_id': req.params.id}, data, { new : true })
             .then(response => {
+                response.dir = URL.PRODUCT_CATEGORY + response.dir;
                 return res.status(200).json(response);
             })
             .catch(error => {
@@ -52,7 +54,7 @@ class ProductCategoryController{
         await ProductCategory.find()
             .sort('name')
             .then(response => {
-                response.map(r => r.icon = URL.PRODUCT_CATEGORY +  r.image);
+                response.map(r => r.image = URL.PRODUCT_CATEGORY +  r.image);
                 return res.status(200).json(response);
             })
             .catch(error => {

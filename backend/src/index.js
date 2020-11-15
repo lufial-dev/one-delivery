@@ -11,12 +11,14 @@ const ProductCategoryRoutes = require("./routes/ProductCategoryRoutes");
 const ClientRouter = require("./routes/ClientRoutes");
 const OfficialRoutes = require('./routes/OfficialRoutes');
 const IngredientRoutes = require('./routes/IngredientRoutes');
+const ProductImageRoutes = require('./routes/ProductImageRoutes');
 
 server.use('/companycategory', CompanyCategoryRoutes);
 server.use('/productcategory', ProductCategoryRoutes);
 server.use('/client', ClientRouter);
 server.use('/official', OfficialRoutes);
 server.use('/ingredient', IngredientRoutes);
+server.use('/productimage', ProductImageRoutes);
 
 server.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
 

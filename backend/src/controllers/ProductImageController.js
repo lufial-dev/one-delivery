@@ -1,27 +1,25 @@
-const CompanyCategory = require('../models/CompanyCategory');
+const ProductImage = require('../models/ProductImage');
 const path = require("path");
 const URL = require('../config/utilconfig');
 
-class CompanyCategoryController{
+class ProductImageController{
 
     async create(req, res){
-        const { name } = req.body;
         const file = req.file;
 
-        const icon = file.filename;
+        const dir = file.filename;
 
         const data = {
-            name,
-            icon
+            dir
         }
         
         
 
-        const companyCategory = new CompanyCategory(data);
+        const productImage = new ProductImage(data);
         
-        await companyCategory.save()
+        await productImage.save()
             .then( response => {
-                response.dir = URL.COMPANY_CATEGORY + response.dir;
+                response.dir = URL.PRODUCT_IMAGE + response.dir;
                 return res.status(200).json(response);
             })
             .catch( error => {
@@ -30,18 +28,16 @@ class CompanyCategoryController{
     }
 
     async update(req, res){
-        const {name} = req.body;
         const file = req.file;
 
-        const icon = file.filename;
+        const dir = file.filename;
 
-        const data = {
-            name,
-            icon
+        const data ={
+            dir
         }
-        await CompanyCategory.findByIdAndUpdate({'_id': req.params.id}, data, { new : true })
+        await ProductImage.findByIdAndUpdate({'_id': req.params.id}, data, { new : true })
             .then(response => {
-                response.dir = URL.COMPANY_CATEGORY + response.dir;
+                response.dir = URL.PRODUCT_IMAGE + response.dir;
                 return res.status(200).json(response);
             })
             .catch(error => {
@@ -50,11 +46,10 @@ class CompanyCategoryController{
         
     }
 
-    async all(req, res){
-        await CompanyCategory.find()
-            .sort('name')
+    async findById(req, res){
+        await ProductImage.find()
             .then(response => {
-                response.map(r => r.icon = URL.COMPANY_CATEGORY +  r.icon);
+                response.map(r => r.dir = URL.PRODUCT_IMAGE +  r.dir);
                 return res.status(200).json(response);
             })
             .catch(error => {
@@ -64,4 +59,4 @@ class CompanyCategoryController{
 
 }
 
-module.exports = new CompanyCategoryController();
+module.exports = new ProductImageController();
