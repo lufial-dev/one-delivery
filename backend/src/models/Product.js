@@ -7,15 +7,12 @@ const Schema = mongoose.Schema;
 const Product = new Schema({
     name : { type : String, required : true },
     description : { type : String, required : true },
-    value : { type : double, required : true},
+    value : { type : Number, required : true},
     ingredients : [
         { type : Schema.Types.ObjectId, ref : Ingredient }
     ],
     images : [
         { type : Schema.Types.ObjectId, ref : ProductImage}
-    ],
-    categories : [
-        { type : Schema.Types.ObjectId, ref : ProductCategory}
     ]
     
 });
