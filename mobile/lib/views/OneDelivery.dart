@@ -16,11 +16,19 @@ class OneDeliveryPage extends StatefulWidget {
 class _OneDeliveryPageState extends State<OneDeliveryPage> {
   OneDeliveryController oneDeliveryController = OneDeliveryController();
   List<Widget> categories = [];
+  List<Widget> products = [];
 
   Future<void> _loadData() async {
-      List<Widget> list = await oneDeliveryController.allCategories();
       setState(() {
-        categories = list;
+        categories = [];
+        products = [];
+      });
+      
+      List<Widget> listCategories = await oneDeliveryController.allCategories();
+      List<Widget> listProducts = await oneDeliveryController.allproducts();
+      setState(() {
+        categories = listCategories;
+        products = listProducts;
       });
   }
 
@@ -70,7 +78,7 @@ class _OneDeliveryPageState extends State<OneDeliveryPage> {
                 child:Column(
                   children: [
                     TitleList("Produtos"),
-                    ProductsScrollList(),
+                    ProductsScrollList(products),
                     TitleList("Lojas"),
                     Container( 
                       margin: EdgeInsets.all(10),

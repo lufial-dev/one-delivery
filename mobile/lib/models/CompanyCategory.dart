@@ -20,7 +20,8 @@ class CompanyCategory {
   static Future<List<CompanyCategory>> all() async {
     List<CompanyCategory> list = [];
 
-    final response = await API.fetchArray("companycategory/all");
+    final response = await API.get("companycategory/all");
+        
       List result = jsonDecode(response.body);
       result
           .forEach((item) async => list.add(CompanyCategory.fromJson(item)));

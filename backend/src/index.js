@@ -14,6 +14,7 @@ const IngredientRoutes = require('./routes/IngredientRoutes');
 const ProductImageRoutes = require('./routes/ProductImageRoutes');
 const ProductRoutes = require('./routes/ProductRoutes');
 const RatingRoutes = require('./routes/RatingRoutes');
+const CompanyRoutes = require('./routes/CompanyRoutes');
 
 server.use('/companycategory', CompanyCategoryRoutes);
 server.use('/productcategory', ProductCategoryRoutes);
@@ -23,6 +24,7 @@ server.use('/ingredient', IngredientRoutes);
 server.use('/productimage', ProductImageRoutes);
 server.use('/product', ProductRoutes);
 server.use('/rating', RatingRoutes);
+server.use('/company', CompanyRoutes);
 
 server.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
 

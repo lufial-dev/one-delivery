@@ -35,6 +35,8 @@ dev_dependencies:
   intl: ^0.16.1
   http: ^0.12.2
   flutter_svg: ^0.19.1
+  shimmer: ^1.1.2
+
   
 
 # For information on the generic Dart part of this file, see the
